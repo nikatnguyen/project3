@@ -1,0 +1,5 @@
+CREATE TABLE ForestedAreas (
+   Country VARCHAR(255) NOT NULL PRIMARY KEY,
+   ForestedArea FLOAT NOT NULL,
+   LifeExpectancy FLOAT NOT NULL
+);
