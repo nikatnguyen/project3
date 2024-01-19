@@ -9,3 +9,25 @@
     
     We will also provide accompanying graphs for these comparisons. We will be using jupyter notebook for our extraction and transformation processes and loading them into a SQL Database. 
  
+ 
+FILES BY FOLDER---
+-world-data-2023.csv (dataset downloaded from Kaggle) 
+-project3_db.sql (sql database)
+
+Adina
+-ForestedAreas.ipynb (jupyter notebook)
+-SQL code (code to create table)
+-Resources/Forested_Areas.csv (cleaned csv file)
+-Resources/world-data-2023.csv (dataset downloaded from Kaggle)
+
+Anika
+-/NguyenAnika Tax Rate Life Expectancy DataFrame & Cleanup.ipynb (jupyter notebook)
+-tax_rate_df.csv (cleaned csv file)
+-tax_rate_life_expectancy.png (image of scatter plot)
+-world-data-2023.csv (dataset downloaded from Kaggle) 
+
+Garrett
+-out_of_pocket_df.csv (cleaned csv file)
+-out_of_pocket_expenditure_life_expectancy.png (image of scatter plot)
+-out_of_pocket_life_expectancy.ipynb (jupyter notebook)
+-world-data-2023.csv (dataset downloaded from Kaggle) 
