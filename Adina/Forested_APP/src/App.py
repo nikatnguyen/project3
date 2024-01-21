@@ -1,3 +1,25 @@
+# Dependencies
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.stats import linregress, pearsonr
+import plotly.express as px
+import plotly.graph_objects as go
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+from scipy.stats import pearsonr
+import numpy as np
+import dash
+from dash import dcc, html
+from dash.dependencies import Input, Output
+
+# Load CSV into DF
+
+file_path = '../../Resources/Forested_Areas.csv'
+forest_df = pd.read_csv(file_path, encoding='utf-8')
+
+forest_df.head()
+
 # Create a Dash application
 app = dash.Dash(__name__)
 
