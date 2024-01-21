@@ -25,6 +25,9 @@ forest_df.head()
 # Create a Dash application
 app = dash.Dash(__name__)
 
+# Set up for deployment to server -N.C.
+server = app.server
+
 # Define the layout of the application
 app.layout = html.Div([
     # Dropdown menu for selecting a country
@@ -62,7 +65,3 @@ def update_scatter_plot(selected_country):
 
 # Return the figure object which will be used to render the scatter plot
  return fig
-
-# Run application
-if __name__ == '__main__':
- app.run_server(debug=True)
