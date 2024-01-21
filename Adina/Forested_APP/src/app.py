@@ -1,3 +1,5 @@
+# Copy and pasted from the ForestedAreas.ipynb notebook to here -N.C.
+
 # Dependencies
 
 import pandas as pd
