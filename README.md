@@ -7,7 +7,7 @@
     -Countries with higher percentages of forested area are going to have a higher life expectancy
     -Countries with higher total tax rates are going to have a higher life expectancy
     
-    We ultimately found that there was little evidence to suggest a correlation between our chosen variables and life expectancy.
+    We ultimately found that there was little evidence to suggest a correlation between our chosen variables and life expectancy. Visually, our scatter plots were random with no trends positive or negative. Statistically, as well, our data showed weak evidence to suggest a correlation. However, our graphs raised some questions such as: How does other factors such as GDP, peace, and political stability correlate with life expectancy? Where tax dollars go towards if not to benefit taxpayers (hence, contribute to longer life expectancies)? And, how is the out of pocket health expenditures impacted by political and economic factors?
 
     Link to server: https://project3-visuals.onrender.com/
 
