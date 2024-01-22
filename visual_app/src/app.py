@@ -36,7 +36,7 @@ outofpocket_df = pd.read_csv(out_of_pocket_path, encoding='utf-8')
 app = dash.Dash(__name__)
 
 # Set up for deployment to server -N.C.
-# server = app.server
+server = app.server
 
 # Create a scatter plot
 fig2 = px.scatter(outofpocket_df, x="Out of pocket health expenditure", y="Life expectancy", color_discrete_sequence = ["red"])
