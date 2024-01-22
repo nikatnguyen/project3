@@ -48,18 +48,17 @@ app.layout = html.Div(layout = [
    value=forest_df['Country'].iloc[0]
  ),
     # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot', class='adina'),
+ dcc.Graph(id='scatter-plot', figure=fig1),
  html.Div(className='spacer')
  html.H2(layout= 'Out of Pocket Health Expenses vs Life Expectancy'),
- dcc.Graph(id='scatter-plot', class='garrett')
+ dcc.Graph(id='scatter-plot', figure=fig2)
  html.Div(className='spacer'),
  html.H2(layout = 'Total Tax Rates vs Life Expectancy')
- dcc.Graph(id='scatter-plot', class='anika')
+ dcc.Graph(id='scatter-plot', figure=fig3)
  ])
-
 # Define a callback function that updates the scatter plot based on the selected country
 @app.callback(
- Output(class='adina', 'figure'),
+ Output('scatter-plot', 'figure'),
  Input('country-dropdown', 'value')
 )
 def update_scatter_plot(selected_country):
@@ -72,9 +71,9 @@ def update_scatter_plot(selected_country):
  y = filtered_df["Life Expectancy (years)"]
 
  # Create a scatter plot
- fig = px.scatter(forest_df, x="Forested Area (%)", y="Life Expectancy (years)", color=forest_df['Country'].apply(lambda x: 'green' if x == selected_country else 'blue'), custom_data=['Country'], hover_data=['Country'])
+ fig1 = px.scatter(forest_df, x="Forested Area (%)", y="Life Expectancy (years)", color=forest_df['Country'].apply(lambda x: 'green' if x == selected_country else 'blue'), custom_data=['Country'], hover_data=['Country'])
 # Return the figure object which will be used to render the scatter plot
- return fig
+ return fig1
 
 # Customize the hovertemplate
  fig.update_traces(hovertemplate="<b>Country:</b> %{customdata[0]}<br><b>Forested Area:</b> %{x}<br><b>Life Expectancy:</b> %{y}<extra></extra>")
@@ -83,8 +82,9 @@ def update_scatter_plot(selected_country):
  fig.update_layout(showlegend=False)
 
 @app.callback(
- Output(class='garrett', 'figure')
+ Output('scatter-lot', 'figure')
 )
+def figure2():
 # Define X and y
  X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
  y = outofpocket_df["Life expectancy"]
@@ -95,9 +95,9 @@ def update_scatter_plot(selected_country):
  return fig2
 
 @app.callback(
- Output(class='anika', 'figure')
+ Output('scatter-plot', 'figure')
 )
-def scatter_plot_2(selected_country):
+def figure3():
  # Define X and y
  X =  taxrate_df["Total Tax Rate (%)"].values.reshape(-1, 1)
  y = taxrate_df["Life Expectancy"]
