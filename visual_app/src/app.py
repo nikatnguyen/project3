@@ -36,10 +36,16 @@ outofpocket_df = pd.read_csv(out_of_pocket_path, encoding='utf-8')
 app = dash.Dash(__name__)
 
 # Set up for deployment to server -N.C.
-server = app.server
+# server = app.server
+
+# Create a scatter plot
+fig2 = px.scatter(outofpocket_df, x="Out of pocket health expenditure", y="Life expectancy", color_discrete_sequence = ["red"])
+
+# Create a scatter plot
+fig3 = px.scatter(taxrate_df, x="Total Tax Rate (%)", y="Life Expectancy", color_discrete_sequence = ["red"])
 
 # Define the layout of the application
-app.layout = html.Div(layout = [
+app.layout = html.Div([
  html.H2("Forested Area (%) vs Life Expectancy (years)"),
     # Dropdown menu for selecting a country
  dcc.Dropdown(
@@ -48,13 +54,13 @@ app.layout = html.Div(layout = [
    value=forest_df['Country'].iloc[0]
  ),
     # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot', figure=fig1),
+ dcc.Graph(id='scatter-plot'),
  html.Div(className='spacer'),
  html.H2("Out of Pocket Health Expenses vs Life Expectancy"),
- dcc.Graph(id='scatter-plot', figure=fig2),
+ dcc.Graph(id='scatter-plot2', figure = fig2),
  html.Div(className='spacer'),
  html.H2("Total Tax Rates vs Life Expectancy"),
- dcc.Graph(id='scatter-plot', figure=fig3)
+ dcc.Graph(id='scatter-plot3', figure = fig3)
  ])
 
 # Define a callback function that updates the scatter plot based on the selected country
@@ -73,38 +79,18 @@ def update_scatter_plot(selected_country):
 
  # Create a scatter plot
  fig1 = px.scatter(forest_df, x="Forested Area (%)", y="Life Expectancy (years)", color=forest_df['Country'].apply(lambda x: 'green' if x == selected_country else 'blue'), custom_data=['Country'], hover_data=['Country'])
-# Return the figure object which will be used to render the scatter plot
- return fig1
+
 
 # Customize the hovertemplate
- fig.update_traces(hovertemplate="<b>Country:</b> %{customdata[0]}<br><b>Forested Area:</b> %{x}<br><b>Life Expectancy:</b> %{y}<extra></extra>")
+ fig1.update_traces(hovertemplate="<b>Country:</b> %{customdata[0]}<br><b>Forested Area:</b> %{x}<br><b>Life Expectancy:</b> %{y}<extra></extra>")
 
  # Remove the legend
- fig.update_layout(showlegend=False)
+ fig1.update_layout(showlegend=False)
 
-@app.callback(
- Output('scatter-lot', 'figure')
-)
-def fig2():
-# Define X and y
- X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
- y = outofpocket_df["Life expectancy"]
+ # Return the figure object which will be used to render the scatter plot
+ return fig1
 
- # Create a scatter plot
- fig2 = px.scatter(outofpocket_df, x="Out of pocket health expenditure", y="Life Expectancy", color='red')
-# Return the figure object which will be used to render the scatter plot
- return fig2
-
-@app.callback(
- Output('scatter-plot', 'figure')
-)
-def fig3():
- # Define X and y
- X =  taxrate_df["Total Tax Rate (%)"].values.reshape(-1, 1)
- y = taxrate_df["Life Expectancy"]
-
- # Create a scatter plot
- fig3 = px.scatter(taxrate_df, x="Total Tax Rate (%)", y="Life Expectancy", color='red')
-# Return the figure object which will be used to render the scatter plot
- return fig3
+# For local host use -N.C.
+# if __name__ == '__main__':
+#     app.run_server(debug=True)
 
