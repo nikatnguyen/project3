@@ -39,7 +39,8 @@ app = dash.Dash(__name__)
 server = app.server
 
 # Define the layout of the application
-app.layout = html.Div([
+app.layout = html.Div(layout = [
+ html.H2(layout='Forested Area (%) vs Life Expectancy (years)')
     # Dropdown menu for selecting a country
  dcc.Dropdown(
    id='country-dropdown',
@@ -47,16 +48,18 @@ app.layout = html.Div([
    value=forest_df['Country'].iloc[0]
  ),
     # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot1')
-  # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot2')
-  # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot3')
-])
+ dcc.Graph(id='scatter-plot', class='adina'),
+ html.Div(className='spacer')
+ html.H2(layout= 'Out of Pocket Health Expenses vs Life Expectancy'),
+ dcc.Graph(id='scatter-plot', class='garrett')
+ html.Div(className='spacer'),
+ html.H2(layout = 'Total Tax Rates vs Life Expectancy')
+ dcc.Graph(id='scatter-plot', class='anika')
+ ])
 
 # Define a callback function that updates the scatter plot based on the selected country
 @app.callback(
- Output('scatter-plot1', 'figure'),
+ Output(class='adina', 'figure'),
  Input('country-dropdown', 'value')
 )
 def update_scatter_plot(selected_country):
@@ -80,7 +83,7 @@ def update_scatter_plot(selected_country):
  fig.update_layout(showlegend=False)
 
 @app.callback(
- Output('scatter-plot2', 'figure')
+ Output(class='garrett', 'figure')
 )
 # Define X and y
  X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
@@ -92,7 +95,7 @@ def update_scatter_plot(selected_country):
  return fig2
 
 @app.callback(
- Output('scatter-plot3', 'figure')
+ Output(class='anika', 'figure')
 )
 def scatter_plot_2(selected_country):
  # Define X and y
