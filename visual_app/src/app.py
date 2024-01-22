@@ -47,16 +47,16 @@ app.layout = html.Div([
    value=forest_df['Country'].iloc[0]
  ),
     # Graph object for displaying the scatter plot
- dcc.Graph(id='adina-scatter-plot')
+ dcc.Graph(id='scatter-plot1')
   # Graph object for displaying the scatter plot
- dcc.Graph(id='garrett-scatter-plot')
+ dcc.Graph(id='scatter-plot2')
   # Graph object for displaying the scatter plot
- dcc.Graph(id='anika-scatter-plot')
+ dcc.Graph(id='scatter-plot3')
 ])
 
 # Define a callback function that updates the scatter plot based on the selected country
 @app.callback(
- Output('adina-scatter-plot', 'figure'),
+ Output('scatter-plot1', 'figure'),
  Input('country-dropdown', 'value')
 )
 def update_scatter_plot(selected_country):
@@ -70,6 +70,8 @@ def update_scatter_plot(selected_country):
 
  # Create a scatter plot
  fig = px.scatter(forest_df, x="Forested Area (%)", y="Life Expectancy (years)", color=forest_df['Country'].apply(lambda x: 'green' if x == selected_country else 'blue'), custom_data=['Country'], hover_data=['Country'])
+# Return the figure object which will be used to render the scatter plot
+ return fig
 
 # Customize the hovertemplate
  fig.update_traces(hovertemplate="<b>Country:</b> %{customdata[0]}<br><b>Forested Area:</b> %{x}<br><b>Life Expectancy:</b> %{y}<extra></extra>")
@@ -78,7 +80,19 @@ def update_scatter_plot(selected_country):
  fig.update_layout(showlegend=False)
 
 @app.callback(
- Output('anika-scatter-plot', 'figure')
+ Output('scatter-plot2', 'figure')
+)
+# Define X and y
+ X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
+ y = outofpocket_df["Life expectancy"]
+
+ # Create a scatter plot
+ fig2 = px.scatter(outofpocket_df, x="Out of pocket health expenditure", y="Life Expectancy", color='red')
+# Return the figure object which will be used to render the scatter plot
+ return fig2
+
+@app.callback(
+ Output('scatter-plot3', 'figure')
 )
 def scatter_plot_2(selected_country):
  # Define X and y
@@ -86,17 +100,6 @@ def scatter_plot_2(selected_country):
  y = taxrate_df["Life Expectancy"]
 
  # Create a scatter plot
- fig = px.scatter(taxrate_df, x="Total Tax Rate (%)", y="Life Expectancy", color='red')
-
-@app.callback(
- Output('garrett-scatter-plot', 'figure')
-)
-# Define X and y
- X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
- y = outofpocket_df["Life expectancy"]
-
- # Create a scatter plot
- fig = px.scatter(outofpocket_df, x="Out of pocket health expenditure", y="Life Expectancy", color='red')
-
+ fig3 = px.scatter(taxrate_df, x="Total Tax Rate (%)", y="Life Expectancy", color='red')
 # Return the figure object which will be used to render the scatter plot
- return fig
+ return fig3
