@@ -17,10 +17,20 @@ from dash.dependencies import Input, Output
 
 # Load CSV into DF
 
+#Adina
 forested_file_path = '../../Adina/Resources/Forested_Areas.csv'
 forest_df = pd.read_csv(forested_file_path, encoding='utf-8')
 
 forest_df.head()
+
+#Anika
+tax_rate_path = '../../Anika/tax_rate_df.csv'
+taxrate_df = pd.read_csv(tax_rate_path, encoding='utf-8')
+
+#Garrett
+out_of_pocket_path = '../../Garrett/out_of_pocket_df.csv'
+outofpocket_df = pd.read_csv(out_of_pocket_path, encoding='utf-8')
+
 
 # Create a Dash application
 app = dash.Dash(__name__)
@@ -37,12 +47,16 @@ app.layout = html.Div([
    value=forest_df['Country'].iloc[0]
  ),
     # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot')
+ dcc.Graph(id='adina-scatter-plot')
+  # Graph object for displaying the scatter plot
+ dcc.Graph(id='garrett-scatter-plot')
+  # Graph object for displaying the scatter plot
+ dcc.Graph(id='anika-scatter-plot')
 ])
 
 # Define a callback function that updates the scatter plot based on the selected country
 @app.callback(
- Output('scatter-plot', 'figure'),
+ Output('adina-scatter-plot', 'figure'),
  Input('country-dropdown', 'value')
 )
 def update_scatter_plot(selected_country):
@@ -62,6 +76,27 @@ def update_scatter_plot(selected_country):
 
  # Remove the legend
  fig.update_layout(showlegend=False)
+
+@app.callback(
+ Output('anika-scatter-plot', 'figure')
+)
+def scatter_plot_2(selected_country):
+ # Define X and y
+ X =  taxrate_df["Total Tax Rate (%)"].values.reshape(-1, 1)
+ y = taxrate_df["Life Expectancy"]
+
+ # Create a scatter plot
+ fig = px.scatter(taxrate_df, x="Total Tax Rate (%)", y="Life Expectancy", color='red')
+
+@app.callback(
+ Output('garrett-scatter-plot', 'figure')
+)
+# Define X and y
+ X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
+ y = outofpocket_df["Life expectancy"]
+
+ # Create a scatter plot
+ fig = px.scatter(outofpocket_df, x="Out of pocket health expenditure", y="Life Expectancy", color='red')
 
 # Return the figure object which will be used to render the scatter plot
  return fig
