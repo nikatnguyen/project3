@@ -39,23 +39,23 @@ app = dash.Dash(__name__)
 server = app.server
 
 # Define the layout of the application
-#app.layout = html.Div(layout = [
-#  html.H2("Forested Area (%) vs Life Expectancy (years)"),
-#     # Dropdown menu for selecting a country
-#  dcc.Dropdown(
-#    id='country-dropdown',
-#    options=[{'label': i, 'value': i} for i in forest_df['Country'].unique()],
-#    value=forest_df['Country'].iloc[0]
-#  ),
-#     # Graph object for displaying the scatter plot
-#  dcc.Graph(id='scatter-plot', figure=fig1),
-#  html.Div(className='spacer'),
-#  html.H2("Out of Pocket Health Expenses vs Life Expectancy"),
-#  dcc.Graph(id='scatter-plot', figure=fig2),
-#  html.Div(className='spacer'),
-#  html.H2("Total Tax Rates vs Life Expectancy"),
-#  dcc.Graph(id='scatter-plot', figure=fig3)
-#  ])
+app.layout = html.Div(layout = [
+ html.H2("Forested Area (%) vs Life Expectancy (years)"),
+    # Dropdown menu for selecting a country
+ dcc.Dropdown(
+   id='country-dropdown',
+   options=[{'label': i, 'value': i} for i in forest_df['Country'].unique()],
+   value=forest_df['Country'].iloc[0]
+ ),
+    # Graph object for displaying the scatter plot
+ dcc.Graph(id='scatter-plot', figure=fig1),
+ html.Div(className='spacer'),
+ html.H2("Out of Pocket Health Expenses vs Life Expectancy"),
+ dcc.Graph(id='scatter-plot', figure=fig2),
+ html.Div(className='spacer'),
+ html.H2("Total Tax Rates vs Life Expectancy"),
+ dcc.Graph(id='scatter-plot', figure=fig3)
+ ])
 
 # Define a callback function that updates the scatter plot based on the selected country
 @app.callback(
@@ -85,7 +85,7 @@ def update_scatter_plot(selected_country):
 @app.callback(
  Output('scatter-lot', 'figure')
 )
-def figure2():
+def fig2():
 # Define X and y
  X = outofpocket_df["Out of pocket health expenditure"].values.reshape(-1, 1)
  y = outofpocket_df["Life expectancy"]
@@ -98,7 +98,7 @@ def figure2():
 @app.callback(
  Output('scatter-plot', 'figure')
 )
-def figure3():
+def fig3():
  # Define X and y
  X =  taxrate_df["Total Tax Rate (%)"].values.reshape(-1, 1)
  y = taxrate_df["Life Expectancy"]
@@ -108,21 +108,3 @@ def figure3():
 # Return the figure object which will be used to render the scatter plot
  return fig3
 
-# Define the layout of the application
-app.layout = html.Div(layout = [
- html.H2("Forested Area (%) vs Life Expectancy (years)"),
-    # Dropdown menu for selecting a country
- dcc.Dropdown(
-   id='country-dropdown',
-   options=[{'label': i, 'value': i} for i in forest_df['Country'].unique()],
-   value=forest_df['Country'].iloc[0]
- ),
-    # Graph object for displaying the scatter plot
- dcc.Graph(id='scatter-plot', figure=fig1),
- html.Div(className='spacer'),
- html.H2("Out of Pocket Health Expenses vs Life Expectancy"),
- dcc.Graph(id='scatter-plot', figure=fig2),
- html.Div(className='spacer'),
- html.H2("Total Tax Rates vs Life Expectancy"),
- dcc.Graph(id='scatter-plot', figure=fig3)
- ])
