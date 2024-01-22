@@ -40,7 +40,7 @@ server = app.server
 
 # Define the layout of the application
 app.layout = html.Div(layout = [
- html.H2(layout='Forested Area (%) vs Life Expectancy (years)')
+ html.H2("Forested Area (%) vs Life Expectancy (years)")
     # Dropdown menu for selecting a country
  dcc.Dropdown(
    id='country-dropdown',
@@ -50,10 +50,10 @@ app.layout = html.Div(layout = [
     # Graph object for displaying the scatter plot
  dcc.Graph(id='scatter-plot', figure=fig1),
  html.Div(className='spacer')
- html.H2(layout= 'Out of Pocket Health Expenses vs Life Expectancy'),
+ html.H2("Out of Pocket Health Expenses vs Life Expectancy"),
  dcc.Graph(id='scatter-plot', figure=fig2)
  html.Div(className='spacer'),
- html.H2(layout = 'Total Tax Rates vs Life Expectancy')
+ html.H2("Total Tax Rates vs Life Expectancy")
  dcc.Graph(id='scatter-plot', figure=fig3)
  ])
 # Define a callback function that updates the scatter plot based on the selected country
