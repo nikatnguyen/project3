@@ -17,7 +17,7 @@ from dash.dependencies import Input, Output
 
 # Load CSV into DF
 
-forested_file_path = '../Adina/Resources/Forested_Areas.csv'
+forested_file_path = '../../Adina/Resources/Forested_Areas.csv'
 forest_df = pd.read_csv(forested_file_path, encoding='utf-8')
 
 forest_df.head()
