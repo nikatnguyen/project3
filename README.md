@@ -9,6 +9,8 @@
     
     We ultimately found that there was little evidence to suggest a correlation between our chosen variables and life expectancy. Visually, our scatter plots were random with no trends positive or negative. Statistically, as well, our data showed weak evidence to suggest a correlation. However, our graphs raised some questions such as: How does other factors such as GDP, peace, and political stability correlate with life expectancy? Where tax dollars go towards if not to benefit taxpayers (hence, contribute to longer life expectancies)? And, how is the out of pocket health expenditures impacted by political and economic factors?
 
+    Some ethical concerns we had going into this project were the political ramifications regarding information from the past year, especially regarding the data's lack of context about why certain countries had certain statistics. Our questions (above) touch on some of these ethical considerations, especially if researchers were to go more deeply into our research about why these were the results, taking in factors such as policy changes, global events, etc.
+
     Link to server: https://project3-visuals.onrender.com/
 
     HOW TO USE SERVER:
@@ -42,4 +44,10 @@
         -__init__.py (automated)
         -app.py(app for visualization deploy)
         -requirements.txt
+
+    RESOURCES
+    -Dataset: https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023
+    -Related articles: 
+        -https://nomadcapitalist.com/global-citizen/7-tax-friendly-countries-with-high-life-expectancy/#:~:text=Historically%2C%20there%20is%20a%20relationship,to%20your%20question%20is%20yes.
+
 
