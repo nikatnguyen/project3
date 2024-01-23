@@ -47,6 +47,7 @@
 
     RESOURCES
     -Dataset: https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023
+    -Slides: https://docs.google.com/presentation/d/1WALlZBfPNpZ3SzT7WLp-Ja_SZFSbm7-vqez10A6glN0/edit?usp=sharing
     -Related articles: 
         -https://nomadcapitalist.com/global-citizen/7-tax-friendly-countries-with-high-life-expectancy/#:~:text=Historically%2C%20there%20is%20a%20relationship,to%20your%20question%20is%20yes.
 
